@@ -1,175 +1,91 @@
-* {
-    box-sizing: border-box;
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    z-index: -2;
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.45);
+    z-index: -1;
 }
 
 body {
-    font-family: Arial, sans-serif;
-
     margin: 0;
-
-    width: 100%;
-    height: 100vh;
-
-    overflow: hidden;
+    min-height: 100vh;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    font-family: Arial, sans-serif;
 }
 
-
-/* Login Background Video */
-
-#background-video {
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100vw;
-    height: 100vh;
-
-    object-fit: cover;
-
-    z-index: -2;
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
 }
 
-
-/* Dark Overlay */
-
-.overlay {
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100vw;
-    height: 100vh;
-
-    background: rgba(0, 0, 0, 0.45);
-
-    z-index: -1;
-}
-
-
-/* Main Container */
-
-.main-container {
-    text-align: center;
-}
-
-
-/* MP Gaming */
-
-.brand {
-    color: white;
-
-    font-size: 40px;
-
-    margin-bottom: 20px;
-
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
-}
-
-
-/* Login Box */
-
-.login-box {
-    background: rgba(255, 255, 255, 0.95);
-
+.card {
     padding: 30px;
+    border-radius: 20px;
 
-    width: 330px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 
     text-align: center;
-
-    border-radius: 15px;
-
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
 }
 
-
-/* Login Heading */
-
-h2 {
-    margin-bottom: 25px;
+.card h1 {
+    color: #d63384;
 }
-
-
-/* Input */
 
 input {
-    width: 90%;
+    width: 100%;
+    box-sizing: border-box;
 
     padding: 12px;
-
     margin: 8px 0;
 
     border: 1px solid #ccc;
-
-    border-radius: 6px;
-
-    outline: none;
+    border-radius: 10px;
 }
 
-
-/* Login Button */
-
-#submitButton {
-    width: 90%;
-
-    padding: 12px;
-
-    margin-top: 10px;
+button {
+    padding: 12px 20px;
+    margin-top: 12px;
 
     border: none;
+    border-radius: 20px;
 
-    border-radius: 6px;
-
-    background: #222;
-
+    background: #d63384;
     color: white;
 
     cursor: pointer;
-
-    font-size: 15px;
 }
 
-#submitButton:hover {
-    background: #444;
+button:hover {
+    background: #b02a6f;
 }
-
-
-/* Message */
 
 #message {
-    margin-top: 15px;
+    color: #d63384;
+    font-weight: bold;
 }
-
-
-/* Create Account */
 
 .switch-area {
-    margin-top: 18px;
-}
-
-
-.switch-button {
-    width: auto;
-
-    padding: 0;
-
-    margin: 0 0 0 4px;
-
-    border: none;
-
-    background: none;
-
-    color: #0066cc;
-
-    cursor: pointer;
-}
-
-.switch-button:hover {
-    background: none;
+    margin-top: 20px;
 }
