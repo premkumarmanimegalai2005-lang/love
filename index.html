@@ -10,13 +10,22 @@
 </head>
 <body>
 
-    <video class="background-video" autoplay muted loop playsinline>
-        <source src="background.mp4" type="video/mp4">
-        Your browser does not support video.
+    <!-- Background Video -->
+    <video
+        id="backgroundVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+    >
+        <source src="./background.mp4" type="video/mp4">
     </video>
 
+    <!-- Dark overlay -->
     <div class="video-overlay"></div>
 
+    <!-- Login card -->
     <div class="container">
 
         <div class="card">
@@ -52,7 +61,6 @@
             <p id="message"></p>
 
             <div class="switch-area">
-
                 <span id="switchText">
                     Don't have an account?
                 </span>
@@ -60,7 +68,6 @@
                 <button type="button" id="switchButton">
                     Create Account
                 </button>
-
             </div>
 
         </div>
