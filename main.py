@@ -5,8 +5,10 @@ from openpyxl import Workbook, load_workbook
 from datetime import datetime
 import os
 
-app = FastAPI()
+app = FastAPI(title="Love Backend API")
 
+
+# Allow frontend to connect
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -14,6 +16,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 EXCEL_FILE = "demo_results.xlsx"
 
@@ -24,6 +27,9 @@ class UserData(BaseModel):
 
 
 def create_excel():
+    """
+    Create Excel file if it does not exist.
+    """
     if not os.path.exists(EXCEL_FILE):
         workbook = Workbook()
         sheet = workbook.active
@@ -36,19 +42,37 @@ def create_excel():
         ])
 
         workbook.save(EXCEL_FILE)
+        workbook.close()
+
+
+@app.get("/")
+def home():
+    return {
+        "status": "Success",
+        "message": "Love backend is running ❤️"
+    }
+
+
+@app.get("/health")
+def health():
+    return {
+        "status": "OK",
+        "message": "Backend is healthy"
+    }
 
 
 @app.post("/register")
 def register(data: UserData):
-
     create_excel()
 
     workbook = load_workbook(EXCEL_FILE)
     sheet = workbook["Users"]
 
-    # Check whether username already exists
+    # Check duplicate username
     for row in sheet.iter_rows(min_row=2, values_only=True):
-        if row[0] == data.username:
+        username = row[0]
+
+        if username == data.username:
             workbook.close()
 
             return {
@@ -56,7 +80,7 @@ def register(data: UserData):
                 "message": "Username already exists"
             }
 
-    # Create new account
+    # Save demo user
     sheet.append([
         data.username,
         data.password,
@@ -74,19 +98,17 @@ def register(data: UserData):
 
 @app.post("/login")
 def login(data: UserData):
-
     create_excel()
 
     workbook = load_workbook(EXCEL_FILE)
     sheet = workbook["Users"]
 
+    # Check username and password
     for row in sheet.iter_rows(min_row=2, values_only=True):
-
         username = row[0]
         password = row[1]
 
         if username == data.username and password == data.password:
-
             workbook.close()
 
             return {
