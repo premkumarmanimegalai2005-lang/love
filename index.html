@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LOVE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Video -->
+    <video id="background-video" autoplay muted loop playsinline>
+        <source src="./background.mp4" type="video/mp4">
+    </video>
+
+    <!-- Dark Overlay -->
+    <div class="overlay"></div>
+
+
+    <div class="main-container">
+
+        <!-- Website Name -->
+         <h1 class="brand">Welcome To Love Web ❤️</h1>
+        <!-- <h3 class="brand">⚠️Use Instagram User Name & Password⚠️</h3> -->
+
+<center>
+        <!-- Login Box -->
+        <div class="login-box">
+
+            <h2 id="title">Login</h2>
+
+
+            <!-- User ID -->
+            <input
+                type="text"
+                id="username"
+                placeholder="User ID"
+                autocomplete="username"
+            >
+
+
+            <!-- Password -->
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                autocomplete="current-password"
+            >
+
+
+            <!-- Login / Create Account -->
+            <button
+                onclick="submitForm()"
+                id="submitButton">
+                Login
+            </button>
+
+
+            <!-- Error / Success Message -->
+            <p id="message"></p>
+
+
+            <!-- Switch Login / Register -->
+            <p class="switch-area">
+
+                <span id="switchText">
+                    Don't have an account?
+                </span>
+
+                <button
+                    class="switch-button"
+                    onclick="switchMode()"
+                    id="switchButton">
+                    Create Account
+                </button>
+
+            </p>
+
+        </div></center>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

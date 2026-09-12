@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MP Gaming</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background Video */
+
+        #success-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100vw;
+            height: 100vh;
+
+            object-fit: cover;
+
+            z-index: -2;
+        }
+
+        /* Dark Overlay */
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.45);
+
+            z-index: -1;
+        }
+
+        /* Content */
+
+        .success-box {
+            width: 700px;
+            max-width: 90%;
+
+            text-align: center;
+
+            color: white;
+        }
+
+        .success-box h1 {
+            font-size: 55px;
+
+            margin-bottom: 25px;
+
+            text-shadow:
+                0 0 10px white,
+                0 0 25px white;
+        }
+
+        .love-message {
+            font-size: 22px;
+
+            line-height: 1.7;
+
+            text-shadow: 0 0 10px black;
+
+            min-height: 150px;
+        }
+
+        /* Cursor */
+
+        #cursor {
+            display: inline-block;
+
+            font-size: 22px;
+
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+
+            0%, 50% {
+                opacity: 1;
+            }
+
+            51%, 100% {
+                opacity: 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- Success Background Video -->
+
+    <video
+        id="success-video"
+        autoplay
+        muted
+        loop
+        playsinline>
+
+        <source
+            src="./success-video.mp4"
+            type="video/mp4">
+
+    </video>
+
+
+    <!-- Dark Overlay -->
+
+    <div class="overlay"></div>
+
+
+    <!-- Love Content -->
+
+    <div class="success-box">
+
+        <h1>LOVE YOU ❤️</h1>
+
+        <p class="love-message">
+            <span id="loveText"></span>
+            <span id="cursor">|</span>
+        </p>
+
+    </div>
+
+
+    <script>
+
+        let text =
+        "Every moment without you feels empty, and no matter how much I try, I still can't forget you. I still think about you more than I should, and there are so many little moments that remind me of you. Maybe life has taken us in different directions, but one thing I want you to know is that you will always have a special place in my heart. I don't want you to worry about me or think about me anymore. Please focus on your career, follow your dreams, and become the person you always wanted to be. Don't let my absence make you sad. I just want to see you happy, even if that happiness is without me. Take care of yourself, smile more, and live your life peacefully. I may not be a part of your future, but I will always silently wish the best for you. I miss you… I can't forget you… but it's okay. You just be happy. ❤️🥺";
+
+
+        let words = text.split(" ");
+
+        let index = 0;
+
+        let loveText = document.getElementById("loveText");
+
+
+        function showWord() {
+
+            if (index < words.length) {
+
+                loveText.innerHTML +=
+                    words[index] + " ";
+
+                index++;
+
+                setTimeout(showWord, 300);
+
+            }
+
+        }
+
+
+        showWord();
+
+    </script>
+
+
+</body>
+
+</html>
