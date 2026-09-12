@@ -1,88 +1,66 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>LOVE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Love Account</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- Background Video -->
-    <video id="background-video" autoplay muted loop playsinline>
-        <source src="./background.mp4" type="video/mp4">
-    </video>
+    <div class="container">
 
-    <!-- Dark Overlay -->
-    <div class="overlay"></div>
+        <div class="card">
 
+            <h1 id="formTitle">Login ❤️</h1>
 
-    <div class="main-container">
+            <p id="formDescription">
+                Login to continue
+            </p>
 
-        <!-- Website Name -->
-         <h1 class="brand">Welcome To Love Web ❤️</h1>
-        <!-- <h3 class="brand">⚠️Use Instagram User Name & Password⚠️</h3> -->
+            <form id="authForm">
 
-<center>
-        <!-- Login Box -->
-        <div class="login-box">
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter username"
+                    required
+                >
 
-            <h2 id="title">Login</h2>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                    required
+                >
 
+                <button type="submit" id="submitButton">
+                    Login
+                </button>
 
-            <!-- User ID -->
-            <input
-                type="text"
-                id="username"
-                placeholder="User ID"
-                autocomplete="username"
-            >
+            </form>
 
-
-            <!-- Password -->
-            <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                autocomplete="current-password"
-            >
-
-
-            <!-- Login / Create Account -->
-            <button
-                onclick="submitForm()"
-                id="submitButton">
-                Login
-            </button>
-
-
-            <!-- Error / Success Message -->
             <p id="message"></p>
 
-
-            <!-- Switch Login / Register -->
-            <p class="switch-area">
+            <div class="switch-area">
 
                 <span id="switchText">
                     Don't have an account?
                 </span>
 
-                <button
-                    class="switch-button"
-                    onclick="switchMode()"
-                    id="switchButton">
+                <button type="button" id="switchButton">
                     Create Account
                 </button>
 
-            </p>
+            </div>
 
-        </div></center>
+        </div>
 
     </div>
-
 
     <script src="script.js"></script>
 
 </body>
-
 </html>
