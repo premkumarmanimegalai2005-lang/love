@@ -1,146 +1,69 @@
-let isRegisterMode = false;
+const API_URL = "https://love-backend-ak0f.onrender.com";
 
+let isRegisterMode = true;
 
-function switchMode() {
+const form = document.getElementById("authForm");
+const title = document.getElementById("formTitle");
+const submitButton = document.getElementById("submitButton");
+const switchText = document.getElementById("switchText");
+const switchButton = document.getElementById("switchButton");
+const message = document.getElementById("message");
 
+switchButton.addEventListener("click", function () {
     isRegisterMode = !isRegisterMode;
 
-    let title = document.getElementById("title");
-    let button = document.getElementById("submitButton");
-    let switchText = document.getElementById("switchText");
-    let switchButton = document.getElementById("switchButton");
-    let message = document.getElementById("message");
-
-    message.innerHTML = "";
-
     if (isRegisterMode) {
-
-        title.innerHTML = "Create Account";
-
-        button.innerHTML = "Create Account";
-
-        switchText.innerHTML =
-            "Already have an account?";
-
-        switchButton.innerHTML = "Login";
-
+        title.textContent = "Create Account";
+        submitButton.textContent = "Register";
+        switchText.textContent = "Already have an account?";
+        switchButton.textContent = "Login";
     } else {
-
-        title.innerHTML = "Login";
-
-        button.innerHTML = "Login";
-
-        switchText.innerHTML =
-            "Don't have an account?";
-
-        switchButton.innerHTML = "Create Account";
-    }
-}
-
-
-async function submitForm() {
-
-    let username =
-        document.getElementById("username").value.trim();
-
-    let password =
-        document.getElementById("password").value;
-
-    let message =
-        document.getElementById("message");
-
-
-    if (username === "" || password === "") {
-
-        message.innerHTML =
-            "Please enter User ID and Password";
-
-        message.style.color = "red";
-
-        return;
+        title.textContent = "Login";
+        submitButton.textContent = "Login";
+        switchText.textContent = "Don't have an account?";
+        switchButton.textContent = "Register";
     }
 
+    message.textContent = "";
+});
 
-    // Username validation
-    // Must contain:
-    // lowercase letters
-    // underscore _
-    // number
-    // only lowercase letters, numbers and underscore
+form.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-    let usernamePattern =
-        /^(?=.*[a-z])(?=.*_)(?=.*[0-9])[a-z0-9_]+$/;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
+    const url = isRegisterMode
+        ? API_URL + "/register"
+        : API_URL + "/login";
 
-    if (!usernamePattern.test(username)) {
-
-        message.innerHTML =
-            "User ID must contain lowercase letters, _ and numbers";
-
-        message.style.color = "red";
-
-        return;
-    }
-
-
-    let url = isRegisterMode
-        ? "http://127.0.0.1:8000/register"
-        : "http://127.0.0.1:8000/login";
-
+    message.textContent = "Please wait...";
 
     try {
-
-        let response = await fetch(url, {
-
+        const response = await fetch(url, {
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
-
             body: JSON.stringify({
-
                 username: username,
-
                 password: password
             })
         });
 
+        const data = await response.json();
 
-        let result = await response.json();
+        message.textContent = data.message;
 
-
-        if (result.status === "Success") {
-
+        if (data.status === "Success") {
             if (isRegisterMode) {
-
-                message.innerHTML =
-                    "Account created successfully!";
-
-                message.style.color = "green";
-
-                document.getElementById("username").value = "";
-
-                document.getElementById("password").value = "";
-
+                message.textContent = "Account created successfully. Now login.";
             } else {
-
                 window.location.href = "success.html";
             }
-
-        } else {
-
-            message.innerHTML = result.message;
-
-            message.style.color = "red";
         }
-
-
     } catch (error) {
-
-        message.innerHTML =
-            "Backend server is not running";
-
-        message.style.color = "red";
+        message.textContent = "Backend connection failed";
+        console.log(error);
     }
-}
+});
